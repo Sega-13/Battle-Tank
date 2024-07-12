@@ -8,6 +8,7 @@ public class TankView : MonoBehaviour
     private float roatation;
     private float movement;
     public Rigidbody rb;
+    public MeshRenderer[] childs;
     void Start()
     {
         GameObject cam = GameObject.Find("Main Camera");
@@ -38,4 +39,11 @@ public class TankView : MonoBehaviour
         this.tankController = tankController;
     }
     public Rigidbody GetRigidbody() { return rb; }
+    public void ChangeColour(Material colour)
+    {
+        for(int i = 0; i < childs.Length; i++)
+        {
+            childs[i].material = colour;
+        }
+    }
 }

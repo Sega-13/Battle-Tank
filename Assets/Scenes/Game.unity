@@ -151,6 +151,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2491e524b88699f4c888699da71abdb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tankList:
+  - momentemSpeed: 30
+    rotationSpeed: 75
+    tankType: 0
+    colour: {fileID: 2100000, guid: c39933e60e73205419d1f79a2af1fdac, type: 2}
+  - momentemSpeed: 10
+    rotationSpeed: 50
+    tankType: 1
+    colour: {fileID: 2100000, guid: ff21ff0ea9b18924bb1fdfbb0e58f5cb, type: 2}
+  - momentemSpeed: 60
+    rotationSpeed: 120
+    tankType: 2
+    colour: {fileID: 2100000, guid: 463052f3f7389124f9e7b34b0b931d0d, type: 2}
   tankView: {fileID: 2885590387364641131, guid: d5d627a8b69b3914c8b892bf47fef5ad,
     type: 3}
 --- !u!4 &1177084146

@@ -9,6 +9,8 @@ public class TankView : MonoBehaviour
     private float movement;
     public Rigidbody rb;
     public MeshRenderer[] childs;
+    [SerializeField] private Transform gun;
+    bool isKeyPressed;
     void Start()
     {
         GameObject cam = GameObject.Find("Main Camera");
@@ -18,6 +20,7 @@ public class TankView : MonoBehaviour
 
     void Update()
     {
+        isKeyPressed = false;
         TankMovement();
         if(movement != 0)
         {
@@ -27,7 +30,13 @@ public class TankView : MonoBehaviour
         {
             tankController.Rotate(roatation, tankController.GetTankModel().roatationSpeed);
         }
-
+        if (Input.GetKeyDown(KeyCode.F) && !isKeyPressed)
+        {
+            tankController.Shoot(gun);
+        }if (Input.GetKeyUp(KeyCode.F))
+        {
+            isKeyPressed=true;
+        }
     }
     private void TankMovement()
     {

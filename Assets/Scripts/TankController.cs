@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class TankController 
 {
+    TankSpawner tankSpawner;
     TankModel tankModel;
     TankView tankView;
     private Rigidbody tankRigidbody;
-    public TankController(TankModel tankModel, TankView _tankView)
+    BulletSpawner bulletSpawner;
+    public TankController(TankModel tankModel, TankView _tankView,TankSpawner tankSpawner)
     {
         this.tankModel = tankModel;
         tankView = GameObject.Instantiate<TankView>(_tankView);
@@ -16,6 +18,7 @@ public class TankController
         tankView.SetTankController(this);
 
         tankView.ChangeColour(tankModel.tankColor);
+        this.tankSpawner = tankSpawner;
     }
 
     public void Move(float movement, float movementSpeed)
@@ -32,4 +35,21 @@ public class TankController
     {
         return tankModel;
     }
+    public void Shoot(Transform gun)
+    {
+        tankSpawner.ShootBullet(gun);
+        /*if(tankType == TankType.Blue)
+        {
+            tankSpawner.ShootBullet(BulletType.Sniper, gun);
+        }else if(tankType == TankType.Green)
+        {
+            tankSpawner.ShootBullet(BulletType.Assault, gun);
+        }
+        else if( tankType == TankType.Red)
+        {
+            tankSpawner.ShootBullet(BulletType.Pistol, gun);
+        }*/
+        
+    }
+    
 }

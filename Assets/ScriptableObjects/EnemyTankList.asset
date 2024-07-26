@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d927f48758f0844aefddb12d9daeec, type: 3}
+  m_Name: EnemyTankList
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 11400000, guid: 308130fe48aa262419a9243d1444795b, type: 2}
+  - {fileID: 11400000, guid: 5b4f221b4d160cb49a5cc67e957d58ee, type: 2}
+  - {fileID: 11400000, guid: 53f68733dedd160429200d9b7ffa1223, type: 2}

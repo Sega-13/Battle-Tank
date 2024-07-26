@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankView : MonoBehaviour
+public class TankView : MonoBehaviour,IDamageable
 {
     TankController tankController;
     private float roatation;
@@ -16,6 +16,7 @@ public class TankView : MonoBehaviour
         GameObject cam = GameObject.Find("Main Camera");
         cam.transform.SetParent(transform);
         cam.transform.position = new Vector3(0f, 3f, -4f);
+        EventService.Instance.OnPlayerShoot += PlayerShootBullet;
     }
 
     void Update()
@@ -54,5 +55,29 @@ public class TankView : MonoBehaviour
         {
             childs[i].material = colour;
         }
+    }
+    
+    void IDamageable.TakeDamage(int damage, TankType tankType)
+    {
+        if(tankType == TankType.EnemyBlack || tankType == TankType.EnemyBrown || tankType == TankType.EnemyPurple)
+        {
+            tankController.TakeDamage(damage);
+        }
+    }
+    void OnCollisionEnter(Collision col)
+    {
+        /*if (col.gameObject.GetComponent<EnemyView>() != null)
+        {
+            EnemyView enemyView = col.gameObject.GetComponent<EnemyView>();
+            tankController.TakeDamage(enemyView.GetEnemyStrength());
+        }*/
+    }
+    private void PlayerShootBullet()
+    {
+        tankController.Shoot(gun);
+    }
+    private void OnDestroy()
+    {
+        EventService.Instance.OnPlayerShoot -= PlayerShootBullet;
     }
 }

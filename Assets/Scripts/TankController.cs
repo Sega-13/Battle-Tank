@@ -8,6 +8,7 @@ public class TankController
     TankModel tankModel;
     TankView tankView;
     private Rigidbody tankRigidbody;
+    private int health;
     BulletSpawner bulletSpawner;
     public TankController(TankModel tankModel, TankView _tankView,TankSpawner tankSpawner)
     {
@@ -19,6 +20,9 @@ public class TankController
 
         tankView.ChangeColour(tankModel.tankColor);
         this.tankSpawner = tankSpawner;
+        health = tankModel.health;
+        EventService.Instance.InvokeSetMaxHealthBar(health);
+        EventService.Instance.InvokeSetPlayerHealthBar(health);
     }
 
     public void Move(float movement, float movementSpeed)
@@ -38,18 +42,22 @@ public class TankController
     public void Shoot(Transform gun)
     {
         tankSpawner.ShootBullet(gun);
-        /*if(tankType == TankType.Blue)
-        {
-            tankSpawner.ShootBullet(BulletType.Sniper, gun);
-        }else if(tankType == TankType.Green)
-        {
-            tankSpawner.ShootBullet(BulletType.Assault, gun);
-        }
-        else if( tankType == TankType.Red)
-        {
-            tankSpawner.ShootBullet(BulletType.Pistol, gun);
-        }*/
-        
+       
     }
-    
+    public Transform GetTransform()
+    {
+        return tankRigidbody.transform;
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        EventService.Instance.InvokeSetPlayerHealthBar(health);
+        if (health <= 0)
+            TankDeath();
+    }
+    private void TankDeath()
+    {
+        EventService.Instance.InvokeGameOver();
+        tankSpawner.DestoryTank(tankView);
+    }
 }

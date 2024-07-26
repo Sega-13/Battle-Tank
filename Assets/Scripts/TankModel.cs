@@ -10,12 +10,15 @@ public class TankModel
     public float roatationSpeed;
     public TankType tankType;
     public Material tankColor;
-    public TankModel(float movementSpeed, float roatationSpeed, TankType tankType, Material tankColor)
+    public int health;
+
+    public TankModel(float movementSpeed, float roatationSpeed, TankType tankType, Material tankColor, int health)
     {
         this.movementSpeed = movementSpeed;
         this.roatationSpeed = roatationSpeed;
         this.tankType = tankType;
         this.tankColor = tankColor;
+        this.health = health;
     }
     public void SetTankController(TankController tankController)
     {

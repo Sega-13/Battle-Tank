@@ -38,4 +38,11 @@ public class BulletView : MonoBehaviour
             childs[i].material = colour;
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        bulletController.BulletCollision(collision.contacts[0].point);
+        IDamageable target = collision.gameObject.GetComponent<IDamageable>();
+        if (target != null)
+            target.TakeDamage(bulletController.GetBulletDamage(), bulletController.GetTankType());
+    }
 }

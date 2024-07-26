@@ -14,10 +14,7 @@ public class BulletSpawner : MonoBehaviour
 
     }
     [SerializeField] private List<Bullet> bullet;
-   /* [SerializeField] private int speed;
-    [SerializeField] private int damageValue;
-    [SerializeField] private BulletType bulletType;
-    [SerializeField] private Material color;*/
+   
     [SerializeField] private BulletView bulletView;
     void Start()
     {
@@ -28,26 +25,30 @@ public class BulletSpawner : MonoBehaviour
     {
        
     }
-    public void SpawnBullet(BulletType bulletType, Transform gunTransform)
+    public void SpawnBullet(BulletType bulletType, Transform gunTransform,TankType tankType)
     {
         switch (bulletType)
         {
             case BulletType.Sniper:
                 BulletModel bulletModel = new BulletModel(bullet[0].speed, bullet[0].damageValue, bullet[0].color, bullet[0].bulletType);
-                //BulletModel bulletModel = new BulletModel(speed, damageValue);
-                BulletController bulletController = new BulletController(bulletModel, bulletView);
-                bulletController.EnableBullet(gunTransform, TankType.Blue);
+                BulletController bulletController = new BulletController(bulletModel, bulletView,this);
+                bulletController.EnableBullet(gunTransform, tankType);
                 break;
             case BulletType.Assault:
                 BulletModel bulletModelAssault = new BulletModel(bullet[1].speed, bullet[1].damageValue, bullet[1].color, bullet[1].bulletType);
-                BulletController bulletControllerAssault = new BulletController(bulletModelAssault, bulletView);
-                bulletControllerAssault.EnableBullet(gunTransform, TankType.Green);
+                BulletController bulletControllerAssault = new BulletController(bulletModelAssault, bulletView,this);
+                bulletControllerAssault.EnableBullet(gunTransform, tankType);
                 break;
             case BulletType.Pistol:
                 BulletModel bulletModelPistol = new BulletModel(bullet[2].speed, bullet[2].damageValue, bullet[2].color, bullet[2].bulletType);
-                BulletController bulletControllerPistol = new BulletController(bulletModelPistol, bulletView);
-                bulletControllerPistol.EnableBullet(gunTransform, TankType.Red);
+                BulletController bulletControllerPistol = new BulletController(bulletModelPistol, bulletView,this);
+                bulletControllerPistol.EnableBullet(gunTransform, tankType);
                 break;
         }
     }
-}
+    public void BulletExplosion(BulletController bulletController, Vector3 position, BulletView bulletView, BulletType bulletType)
+    {
+        bulletController.DisableBullet();
+    }
+
+    }

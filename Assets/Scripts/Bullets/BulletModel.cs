@@ -8,7 +8,7 @@ public class BulletModel
     public int speed;
     public int damageValue;
     public Material colour;
-    BulletType bulletType;
+    public BulletType bulletType;
     public TankType tankType { private set; get; }
     public BulletModel(int speed, int damageValue,Material colour,BulletType bulletType)
     {
